@@ -5,6 +5,11 @@ import 'flatpickr/dist/themes/dark.css';
 import Notiflix from 'notiflix';
 
 // const input = document.getElementById('datetime-picker');
+const days = document.querySelector('[data-days]');
+const hours = document.querySelector('[data-hours]');
+const minutes = document.querySelector('[data-minutes]');
+const seconds = document.querySelector('[data-seconds]');
+
 const options = {
   enableTime: true,
   time_24hr: true,
