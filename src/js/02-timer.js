@@ -16,8 +16,8 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-    if (selectedDates[0] < Date.now()) {
+  onClose([selectedDates]) {
+    if (selectedDates < Date.now()) {
       Notiflix.Report.warning(
         'Alert',
         'Please choose a date in the future',
@@ -26,7 +26,7 @@ const options = {
       startBtn.disabled = true;
     } else {
       startBtn.disabled = false;
-      date = selectedDates[0];
+      date = selectedDates;
     }
   },
 };
@@ -61,7 +61,7 @@ function convertMs(ms) {
 }
 
 startBtn.addEventListener('click', () => {
-  setInterval(() => {
+  timerId = setInterval(() => {
     convertMs(date - Date.now());
   }, 1000);
 });
