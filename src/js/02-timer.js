@@ -2,6 +2,7 @@
 import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
 import 'flatpickr/dist/themes/dark.css';
+import Notiflix from 'notiflix';
 
 // const input = document.getElementById('datetime-picker');
 const options = {
