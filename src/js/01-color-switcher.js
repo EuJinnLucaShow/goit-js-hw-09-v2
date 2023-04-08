@@ -16,6 +16,7 @@ function getRandomHexColor() {
 
 const startBtn = document.querySelector('[data-start]');
 const stopBtn = document.querySelector('[data-stop]');
+stopBtn.disabled = true;
 let timerId;
 
 startBtn.addEventListener('click', () => {
@@ -24,9 +25,11 @@ startBtn.addEventListener('click', () => {
   }, 1000);
 
   startBtn.disabled = true; // Додаємо атрибут "disabled" до кнопки "Start"
+  stopBtn.disabled = false;
 });
 
 stopBtn.addEventListener('click', () => {
   clearInterval(timerId);
   startBtn.disabled = false; // Забираємо атрибут "disabled" з кнопки "Start"
+  stopBtn.disabled = true;
 });
