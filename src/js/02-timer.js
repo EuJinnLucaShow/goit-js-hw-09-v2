@@ -11,6 +11,7 @@ startBtn.disabled = true;
 let date;
 
 const options = {
+  locale: 'default',
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -47,10 +48,14 @@ function convertMs(ms) {
   const dataHours = document.querySelector('[data-hours]');
   const dataMinutes = document.querySelector('[data-minutes]');
   const dataSeconds = document.querySelector('[data-seconds]');
-  dataDays.textContent = `${days}`;
-  dataHours.textContent = `${hours}`;
-  dataMinutes.textContent = `${minutes}`;
-  dataSeconds.textContent = `${seconds}`;
+  dataDays.textContent = `${addLeadingZero(days)}`;
+  dataHours.textContent = `${addLeadingZero(hours)}`;
+  dataMinutes.textContent = `${addLeadingZero(minutes)}`;
+  dataSeconds.textContent = `${addLeadingZero(seconds)}`;
+
+  function addLeadingZero(value) {
+    return value.toString().padStart(2, '0');
+  }
 
   return { days, hours, minutes, seconds };
 }
