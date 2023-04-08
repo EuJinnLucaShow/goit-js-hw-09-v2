@@ -5,10 +5,7 @@ import 'flatpickr/dist/themes/dark.css';
 import Notiflix from 'notiflix';
 
 // const input = document.getElementById('datetime-picker');
-const days = document.querySelector('[data-days]');
-const hours = document.querySelector('[data-hours]');
-const minutes = document.querySelector('[data-minutes]');
-const seconds = document.querySelector('[data-seconds]');
+
 const startBtn = document.querySelector('[data-start]');
 startBtn.disabled = true;
 let date;
@@ -36,26 +33,30 @@ const options = {
 flatpickr('#datetime-picker', options);
 
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
 
-  // Remaining days
   const days = Math.floor(ms / day);
-  // Remaining hours
   const hours = Math.floor((ms % day) / hour);
-  // Remaining minutes
   const minutes = Math.floor(((ms % day) % hour) / minute);
-  // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+  const dataDays = document.querySelector('[data-days]');
+  const dataHours = document.querySelector('[data-hours]');
+  const dataMinutes = document.querySelector('[data-minutes]');
+  const dataSeconds = document.querySelector('[data-seconds]');
+  dataDays.textContent = `${days}`;
+  dataHours.textContent = `${hours}`;
+  dataMinutes.textContent = `${minutes}`;
+  dataSeconds.textContent = `${seconds}`;
 
   return { days, hours, minutes, seconds };
 }
 
 startBtn.addEventListener('click', () => {
   setInterval(() => {
-    console.log(convertMs(date - Date.now()));
+    convertMs(date - Date.now());
   }, 1000);
 });
