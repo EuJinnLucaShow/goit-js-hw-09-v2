@@ -33,6 +33,7 @@ flatpickr(input, options);
 
 function convertMs(ms) {
   if (ms <= 0) {
+    input.disabled = false;
     clearInterval(timerId);
     return { day: '00', hour: '00', minute: '00', second: '00' };
   }
@@ -59,6 +60,7 @@ function convertMs(ms) {
 }
 
 startBtn.addEventListener('click', () => {
+  startBtn.disabled = true;
   timerId = setInterval(() => {
     convertMs(date - Date.now());
   }, 1000);
